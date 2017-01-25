@@ -26,8 +26,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mhinz/vim-startify'
 call plug#end()
 
-source $HOME/.vim/preferences/settings.vim
-source $HOME/.vim/preferences/mappings.vim
+source $HOME/.vim/config/settings.vim
+source $HOME/.vim/config/mappings.vim
 
 
 
