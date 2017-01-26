@@ -6,6 +6,8 @@ set sts=4 sw=4 ts=4 et
 set guioptions=
 set bs=2
 set listchars =tab:»\ ,eol:¬,trail:·
+set vb
+set t_vb=
 
 set undofile
 set undodir=C:\vim2\tmp\undo
@@ -14,20 +16,18 @@ set laststatus=2
 set history=500
 set completeopt=longest,menuone
 set ignorecase smartcase
+set timeoutlen=200
 
 set wildignore+=*\\target\\*,*.exe,*.class
-colo peachpuff
+colo slate
 
 " Global variables
 let g:xptemplate_key=",<Tab>"
 let g:xptemplate_key_pum_only="<S-Tab>"
 let g:xptemplate_key_visual="<C-s>"
 let g:airline_powerline_fonts=1
-let g:slices_preferred_path = $HOME.'\vimfiles\bundle\code-slices'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<F13>'
-" let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
-" let g:ctrlp_user_command = g:ag_command . ' %s -i --nocolor --ignore .git --ignore target --nogroup --hidden -g ""'
 
 
 fun! AlternateJavaComplete(findstart, base) "{{{
@@ -82,6 +82,7 @@ augroup jsetting
   au FileType java let b:end_complete_char = ';'
   au FileType java inoremap <buffer> ,. <C-o>:s/\v;?\s*$/;/<CR><End>
 augroup END
+
 
 augroup html
   au!

@@ -1,6 +1,7 @@
 nnoremap ygl :<C-u><C-r>=getline('.')<cr><cr>
 nnoremap <Space> :
 nnoremap ,. <C-^>
+nnoremap gs :w<cr>
 
 cnoremap <C-j><C-j> ^
 inoremap <C-j><C-j> ^
@@ -21,6 +22,9 @@ noremap! kj <Esc>
 noremap! gf <Right>
 noremap! fg <Left>
 noremap! %% <C-r>=expand('%:h') . g:filesep<cr>
+noremap! jj <Esc>
+nnoremap <C-c> <Esc>
+inoremap gc <Esc>
 
 
 " nnoremap <silent> <C-p> :call UniteWhatToDoWhenItsCalled()<cr>
@@ -45,32 +49,15 @@ endfunction "}}}
       " keepalt Unite -prompt-direction=below -auto-resize -start-insert -buffer-name=files file_mru -unique
       " keepalt Unite -prompt-direction=below -auto-resize -start-insert -buffer-name=files file_rec file_mru -unique
 
-fun! Fontsize_up() "{{{
-  let font = &guifont
-  let beforesize = font[0:matchend(font, '\v\.*\ze[^\d][[:digit:]]+')]
-  let index = match(font, '\v[^:]\zs:\w+$') - len(font)
-  let aftersize = font[index : ]
-  let size = str2nr(matchstr(font, '\v.*[^[:digit:]]\zs[[:digit:]]+\ze:.*'))
-  let size += 1
-  let new_font = beforesize . size . aftersize
-  execute 'set guifont=' . new_font
-endfunction "}}}
-
-fun! Fontsize_down() "{{{
-  let font = &guifont
-  let beforesize = font[0:matchend(font, '\v\.*\ze[^\d][[:digit:]]+')]
-  let index = match(font, '\v[^:]\zs:\w+$') - len(font)
-  let aftersize = font[index : ]
-  let size = str2nr(matchstr(font, '\v.*[^[:digit:]]\zs[[:digit:]]+\ze:.*'))
-  let size -= 1
-  let new_font = beforesize . size . aftersize
-  execute 'set guifont=' . new_font
-endfunction "}}}
-
-
-nnoremap <silent> g0 :call Fontsize_up()<cr>
-nnoremap <silent> g9 :call Fontsize_down()<cr>
-
 let mapleader=','
+
+augroup diffmapping
+  au!
+  au FilterWritePre * if &diff | nnoremap }c ]c| endif
+  au FilterWritePre * if &diff | nnoremap {c [c| endif
+augroup END
+
+inoremap {{ {}O
+
 
 " vim: sw=2 ts=2 sts=2 et
