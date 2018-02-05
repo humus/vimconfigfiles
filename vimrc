@@ -7,11 +7,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-vividchalk'
 Plug 'junegunn/vader.vim'
 Plug 'junegunn/jellybeans.vim'
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dbakker/vim-projectroot'
 Plug 'drmingdrmer/xptemplate', {'branch': 'rc'}
@@ -26,9 +24,14 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mhinz/vim-startify'
 call plug#end()
 
-source $HOME/.vim/config/settings.vim
-source $HOME/.vim/config/mappings.vim
+let s:path=expand('<sfile>:p:h')
 
+execute "source " . s:path . "/settings.vim"
+execute "source " . s:path . "/mappings.vim"
 
+command! Esettings execute "e " . s:path . "/settings.vim"
+command! Emappings execute "e " . s:path . "/mappings.vim"
+
+call system('mkdir -p ' . s:path . '/undo')
 
 " vim: sw=2 ts=2 sts=2 et

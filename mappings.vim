@@ -30,7 +30,7 @@ inoremap gc <Esc>
 " nnoremap <silent> <C-p> :call UniteWhatToDoWhenItsCalled()<cr>
 " nnoremap <silent> <C-n> :keepalt Unite -auto-resize -start-insert -prompt-direction=below -buffer-name=files buffer file_mru<cr>
 nnoremap <silent> <C-p> :call CtrlPWhatTodoWhenCtrlpIsCalled()<cr>
-nnoremap <silent> <C-n> :CtrlPMRU<cr>
+nnoremap <silent> <C-n> :CtrlBuffer<cr>
 
 fun! CtrlPWhatTodoWhenCtrlpIsCalled() "{{{
   let actual_dir = getcwd()
